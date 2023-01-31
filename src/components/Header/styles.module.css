@@ -1,0 +1,51 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 29px 112px;
+}
+#list {
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+  list-style-type: none;
+  text-align: left;
+}
+.itemsList {
+  cursor: pointer;
+  padding: 0 16px;
+}
+
+#duvidasApp {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: right;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  #container {
+    padding: 29px 20px;
+  }
+  #list {
+    display: none;
+  }
+  #duvidasApp {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+  }
+}
+@media (max-width: 320px) {
+  #duvidasApp {
+    font-size: 13px;
+
+    text-align: left;
+    width: 104px;
+  }
+}

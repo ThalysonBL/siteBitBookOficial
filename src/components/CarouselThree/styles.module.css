@@ -1,0 +1,54 @@
+#containerCarousel {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+.imageBox {
+  margin-right: 24px;
+  height: 56px;
+  width: 56px;
+  left: 0px;
+  top: 1px;
+}
+#boxLeft {
+  margin-right: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 185px;
+}
+.boxItems {
+  display: flex;
+}
+
+#boxRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 185px;
+  margin-right: 81px;
+}
+.className {
+  display: flex;
+}
+.boxTitle {
+  color: #ffffff;
+
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+.boxDetail {
+  color: #ffffff;
+
+  font-family: Poppins;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+}

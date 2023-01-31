@@ -1,0 +1,13 @@
+
+.styleItemSlide {
+  height: 382.65px;
+  width:  280px;
+  border-radius: 6px;
+  background-color: #C4C4;
+  
+
+  @media(max-width:768px) {
+    height: 100px;
+    width: 140px;
+  }
+}

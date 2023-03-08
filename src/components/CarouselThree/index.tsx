@@ -17,7 +17,7 @@ import IconSeguranca from "../../../public/IconSeguranca.svg";
 import IconFolhaCheck from "../../../public/IconFolhaCheck.svg";
 import IconCronometro from "../../../public/IconCronometro.svg";
 import IconBitBook from "../../../public/IconBitBook.svg";
-import Image from 'next/image';
+import Image from "next/image";
 
 export function CarouselThree() {
   const numberOne = 1.2;
@@ -38,32 +38,32 @@ export function CarouselThree() {
           marginBottom: "10px",
         }}
       >
-        <SwiperSlide className="boxItems">
-          <Image className="imageBox" src={IconDown} alt="imagem" />
+        <SwiperSlide className={styles.boxItems}>
+          <Image className={styles.imageBox} src={IconDown} alt="imagem" />
           <span>
-            <p className="boxTitle">Baixe grátis</p>
-            <p className="boxDetail">download simples e fácil.</p>
+            <p className={styles.boxTitle}>Baixe grátis</p>
+            <p className={styles.boxDetail}>download simples e fácil.</p>
           </span>
         </SwiperSlide>
-        <SwiperSlide className="boxItems">
-          <Image className="imageBox" src={IconSeguranca} alt="imagem" />
+        <SwiperSlide className={styles.boxItems}>
+          <Image className={styles.imageBox} src={IconSeguranca} alt="imagem" />
           <span>
-            <p className="boxTitle">Temas autorais</p>
-            <p className="boxDetail">toda semana temas novos.</p>
+            <p className={styles.boxTitle}>Temas autorais</p>
+            <p className={styles.boxDetail}>toda semana temas novos.</p>
           </span>
         </SwiperSlide>
-        <SwiperSlide className="boxItems">
-          <Image className="imageBox" src={IconFolhaCheck} alt="imagem" />
+        <SwiperSlide className={styles.boxItems}>
+          <Image className={styles.imageBox} src={IconFolhaCheck} alt="imagem" />
           <span>
-            <p className="boxTitle">Leitura fácil</p>
-            <p className="boxDetail">utilize em qualquer plataforma.</p>
+            <p className={styles.boxTitle}>Leitura fácil</p>
+            <p className={styles.boxDetail}>utilize em qualquer plataforma.</p>
           </span>
         </SwiperSlide>
-        <SwiperSlide className="boxItems">
-          <Image className="imageBox" src={IconCronometro} alt="imagem" />
+        <SwiperSlide className={styles.boxItems}>
+          <Image className={styles.imageBox} src={IconCronometro} alt="imagem" />
           <span>
-            <p className="boxTitle">Acesso ilimitado</p>
-            <p className="boxDetail">a todo conteúdo do app</p>
+            <p className={styles.boxTitle}>Acesso ilimitado</p>
+            <p className={styles.boxDetail}>a todo conteúdo do app</p>
           </span>
         </SwiperSlide>
       </Swiper>

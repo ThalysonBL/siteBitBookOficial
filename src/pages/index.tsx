@@ -1,7 +1,7 @@
 import Head from "next/head";
 import reactLogo from "../../public/react.svg";
 import styles from "@/styles/Home.module.css";
-
+import React, { useRef } from "react";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
@@ -32,7 +32,24 @@ import IconBitBook from "../../public/IconBitBook.svg";
 import ImgUsers from "../../public/ImgUsers.png";
 import Image from "next/image";
 import ImgStars from "../../public/ImgStars.png";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { SliderProvedores } from "../components/SliderProvedores/index";
+
+import {
+  useBreakpointValue,
+  Modal,
+  Box,
+  Button,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import Confetti from "react-confetti";
+import { ContentModal } from "../components/ContentModal/index";
 
 export default function Home() {
   const lista = [
@@ -62,6 +79,9 @@ export default function Home() {
     },
   ];
 
+  const { onOpen, onClose, isOpen } = useDisclosure();
+  const finalRef = React.useRef(null);
+
   return (
     <article>
       <Head>
@@ -69,64 +89,39 @@ export default function Home() {
       </Head>
       <Header />
       <section id={styles.sectionOne}>
-        <div id={styles.contentOne}>
-          <p id={styles.titleOne}>um produto bit tecnologia</p>
-          <p id={styles.headline}>Seu guia digital de saúde e bem-estar</p>
-          <span style={{ marginTop: "-12px" }}>
-            <Image src={ImgBarra} id={styles.barrinha} alt="Imagem de linha" />
-          </span>
+        <div id={styles.containerSectionOne}>
+          <div id={styles.contentOne}>
+            <p id={styles.headline}>Seu guia digital de saúde e bem-estar</p>
 
-          <p id={styles.subscriptionOne}>
-            Baixe o app BitBook e faça parte do&nbsp;
-            <span id={styles.subscriptionSpan}>
-              melhor clube de leitura sobre saúde e bem-estar do Brasil!
-            </span>
-            &nbsp; Conteúdos, autorais e enriquecedores.
-          </p>
+            <p id={styles.subscriptionOne}>
+              Descubra se já é cliente de um de nossos parceiros e tenha acesso
+              a novos ebooks todos os meses, de forma gratuita e ilimitada.
+            </p>
+            <button id={styles.verifyBeneficio} onClick={onOpen}>
+              Verifique o seu benefício
+            </button>
 
-          <div id={styles.containerDownload}>
-            <a
-              id={styles.contentApple}
-              href="https://apps.apple.com/br/app/bittrainers/id1389395944"
-            >
-              <span>
-                <Image src={ImgApple} alt="Imagem Apple Store" />
-              </span>
-              <div className={styles.contentText}>
-                <p className={styles.textDownload}>Download via</p>
-                <p className={styles.textLoja}>App Store</p>
-              </div>
-            </a>
-            <a
-              id={styles.contentPlayStore}
-              href="https://play.google.com/store/apps/details?id=com.bittrainers"
-            >
-              <div>
-                <Image src={ImgGoogle} alt="Imagem Google Store" />
-              </div>
-              <div className={styles.contentText}>
-                <p className={styles.textDownload}>Download via</p>
-                <p className={styles.textLoja}>Google Play</p>
-              </div>
-            </a>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+
+              <ModalContent
+                bg="#ffffff"
+                width="50%"
+                padding="10px 20px"
+                margin=" 10% auto"
+                borderRadius="8px"
+              >
+                <ModalCloseButton display="inline" margin="0 0 0 auto" />
+                <ModalBody>
+                  <ContentModal />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
           </div>
         </div>
-        <Image
-          src={ImgOneSection}
-          id={styles.trocaImage}
-          alt="Imagem Celular"
-        />
-        <Image src={ImgCellMobile} id={styles.imgMobile} alt="Imagem Celular" />
       </section>
 
       <section id={styles.sectionTwo}>
-        <div id={styles.blocoImage}>
-          <Image
-            src={IconRiscado}
-            style={{ margin: "-50px 0 40px 0" }}
-            alt="Imagem riscado Roxo"
-          />
-        </div>
         <p id={styles.headlineTwo}>Cuidar da saúde nunca foi tão fácil...</p>
         <p id={styles.subscriptionTwo}>
           Reunimos diversos conteúdos especializados em um ambiente digital
@@ -162,6 +157,7 @@ export default function Home() {
               A maior plataforma de saúde do corpo e da mente.
             </p>
           </div>
+
           <div id={styles.contentRightThree}>
             <div id={styles.lista}>
               <div id={styles.boxLeft}>
@@ -178,7 +174,7 @@ export default function Home() {
                     </p>
                   </span>
                 </div>
-                <div className={styles.boxItems}>
+                <div className={styles.boxItems} style={{ marginTop: "50px" }}>
                   <Image
                     className={styles.imageBox}
                     src={IconSeguranca}
@@ -204,7 +200,7 @@ export default function Home() {
                     </p>
                   </span>
                 </div>
-                <div className={styles.boxItems}>
+                <div className={styles.boxItems} style={{ marginTop: "50px" }}>
                   <Image
                     className={styles.imageBox}
                     src={IconCronometro}
@@ -217,8 +213,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <CarouselThree />
           </div>
+          <CarouselThree />
         </div>
       </section>
 

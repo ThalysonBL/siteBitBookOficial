@@ -1,9 +1,16 @@
 #containerCarousel {
   display: none;
-  @media (max-width: 768px) {
+
+  width: 90vw;
+  padding: 0 0 0 20px;
+
+}
+@media(max-width: 768px) {
+  #containerCarousel {
     display: block;
   }
 }
+
 .imageBox {
   margin-right: 24px;
   height: 56px;
@@ -11,6 +18,7 @@
   left: 0px;
   top: 1px;
 }
+
 #boxLeft {
   margin-right: 68px;
   display: flex;
@@ -18,8 +26,10 @@
   justify-content: space-between;
   max-height: 185px;
 }
+
 .boxItems {
   display: flex;
+  align-items: center;
 }
 
 #boxRight {
@@ -29,24 +39,27 @@
   max-height: 185px;
   margin-right: 81px;
 }
+
 .className {
   display: flex;
 }
+
 .boxTitle {
   color: #ffffff;
 
   font-family: Poppins;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 22px;
   letter-spacing: -0.02em;
   text-align: left;
 }
+
 .boxDetail {
   color: #ffffff;
 
   font-family: Poppins;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 15px;
   letter-spacing: 0em;

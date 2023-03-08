@@ -1,30 +1,31 @@
-import { Container } from "./styles";
-import styled from "styled-components";
-import LogoWhite from "../../assets/logoWhite.png";
-import IconApple from "../../assets/IconApple.svg";
-import IconGoogle from "../../assets/IconGoogle.svg";
-import IconHearth from "../../assets/IconHearth.svg";
-import Image from 'next/image';
+import styles from "./styles.module.css";
+import LogoWhite from "../../../public/logoWhite.png";
+import IconApple from "../../../public/IconApple.svg";
+import IconGoogle from "../../../public/IconGoogle.svg";
+import IconHearth from "../../../public/IconHearth.svg";
+import Image from "next/image";
 
 export function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
-    <Container>
+    <footer id="container">
       <div>
         <Image src={LogoWhite} alt="imagem Bit Book" />
 
-        <p id="direitos">© 2023 - Todos os direitos reservados</p>
+        <p id="direitos">© {year} - Todos os direitos reservados</p>
       </div>
       <div>
         <p id="baixeApp">Baixe nosso app</p>
         <a
           className="containerLinkLoja"
-          href="https://play.google.com/store/apps/details?id=com.bittrainers"
+          href="https://play.google.com/store/apps/details?id=br.app.bitbook"
         >
           <Image className="imgLojas" src={IconGoogle} alt="imagem Google" />
         </a>
         <a
           className="containerLinkLoja"
-          href="https://apps.apple.com/br/app/bittrainers/id1389395944"
+          href="https://apps.apple.com/br/app/bit-book/id1641568359"
         >
           <Image className="imgLojas" src={IconApple} alt="imagem Apple" />
         </a>
@@ -35,6 +36,6 @@ export function Footer() {
           <Image id="iconeHearth" src={IconHearth} alt="Imagem coração" />
         </p>
       </div>
-    </Container>
+    </footer>
   );
 }

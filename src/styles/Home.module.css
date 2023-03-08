@@ -1,127 +1,107 @@
 #sectionOne {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 105px 112px 86px 112px;
-}
-#contentOne {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 123px;
+  padding-top: 88px;
 }
 
-#titleOne {
-  color: #535353;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0.03em;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 24px;
+#containerSectionOne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../public/imgDobraOne.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
 }
+
+#contentOne {
+  display: flex;
+  flex-direction: column;
+  margin: 151px auto 113px 113px;
+
+
+
+
+}
+
 #headline {
-  font-size: 56px;
-  font-weight: 700;
-  line-height: 56px;
+
+
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 130%;
+  /* or 62px */
+
   letter-spacing: -0.02em;
-  text-align: center;
+
+  /* Branco */
+
+  color: #FFFFFF;
   margin-top: 16px;
 
-  color: #7e06f2;
-  max-width: 601px;
+  color: #ffffff;
+  max-width: 463px;
+
+
 }
 
 #subscriptionOne {
-  font-family: Poppins;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0em;
-  margin-top: 48px;
-  text-align: center;
-  max-width: 633px;
-  color: #535353;
-}
-#subscriptionSpan {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 0em;
-  text-align: center;
-}
-#barrinha {
-}
+  width: 447px;
+  height: 72px;
+  margin-top: 25px;
 
-#containerDownload {
-  display: flex;
-  justify-content: space-between;
-  color: #ffffff;
-  margin-top: 48px;
-  max-width: 380px;
-}
 
-#contentApple {
-  text-decoration: none;
-  background-color: #36007c;
-  border: 1px solid #bab8c6;
-  color: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 15px 10px 15px;
-  margin-right: 20px;
-  max-width: 180px;
-}
-
-#contentPlayStore {
-  background-color: #36007c;
-
-  border: 1px solid #bab8c6;
-  border-radius: 8px;
-  color: #ffffff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-decoration: none;
-  max-width: 180px;
-  padding: 10px 15px 10px 15px;
-}
-.contentText {
-  margin-left: 14px;
-}
-
-.textDownload {
-  font-family: Inter;
-  font-size: 11px;
+  font-style: normal;
   font-weight: 500;
-  line-height: 11px;
-  letter-spacing: 0px;
-  text-align: left;
+  font-size: 16px;
+  line-height: 150%;
+  /* or 24px */
+
+
+  /* Branco */
+
+  color: #FFFFFF;
+
 }
-.textLoja {
-  font-family: Inter;
-  font-size: 17px;
+
+#verifyBeneficio {
+  padding: 16px 0;
+  border-radius: 8px;
+
+
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 600;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: left;
+  font-size: 16px;
+  line-height: 150%;
+
+  letter-spacing: 0.02em;
+  color: #7E06F2;
+  background-color: #FFFFFF;
+  max-width: 60%;
+  margin-top: 32px;
+
+}
+
+
+
+
+#containerModal {
+  background-color: red;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+
 }
 
 #sectionTwo {
-  background: linear-gradient(
-    45deg,
-    #f5f5f5,
-    rgba(229, 84, 243, 0.17),
-    #f5f5f5
-  );
+  /* background: linear-gradient(45deg,
+      #f5f5f5,
+      rgba(229, 84, 243, 0.17),
+      #f5f5f5);*/
   display: flex;
+  padding-top: 20px;
   flex-direction: column;
   justify-content: center;
   padding-bottom: 159px;
@@ -129,13 +109,11 @@
   align: center;
   justify: center;
 }
+
 #imgMobile {
   display: none;
 }
 
-#blocoImage {
-  padding: 1% 55% 50px 0;
-}
 #iconRiscado {
   margin-top: -100px;
   margin-bottom: 100px;
@@ -150,6 +128,7 @@
   margin-bottom: 40px;
   color: #36007c;
 }
+
 #subscriptionTwo {
   color: #0e0e0e;
   font-size: 18px;
@@ -159,6 +138,7 @@
   max-width: 536px;
   text-align: center;
 }
+
 #contentTwoList {
   display: flex;
   justify-content: space-between;
@@ -167,8 +147,8 @@
 
   width: 73%;
 }
+
 #lista {
-  display: flex;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -191,6 +171,7 @@
   padding: 25px 0 35px 0;
   text-align: left;
 }
+
 .descriptionListTwo {
   font-size: 16px;
   font-weight: 400;
@@ -228,6 +209,7 @@
   max-width: 445px;
   text-align: left;
 }
+
 #descriptionThree {
   color: #d8d7de;
   font-size: 18px;
@@ -239,6 +221,7 @@
 
   text-align: left;
 }
+
 #contentRightThree {
   color: #ffffff;
   display: flex;
@@ -248,6 +231,7 @@
 .imageBox {
   margin-right: 24px;
 }
+
 #boxLeft {
   margin-right: 68px;
   display: flex;
@@ -255,6 +239,7 @@
   justify-content: space-between;
   max-height: 185px;
 }
+
 .boxItems {
   display: flex;
 }
@@ -266,9 +251,11 @@
   max-height: 185px;
   margin-right: 81px;
 }
+
 .className {
   display: flex;
 }
+
 .boxTitle {
   font-family: Poppins;
   font-size: 20px;
@@ -279,6 +266,7 @@
   margin-bottom: 4px;
   max-width: 162px;
 }
+
 .boxDetail {
   font-family: Poppins;
   font-size: 14px;
@@ -293,6 +281,7 @@
   padding: 50px 184px 118px 112px;
   justify-content: space-between;
 }
+
 #faq {
   background-color: #c182ff;
   max-height: 33px;
@@ -307,6 +296,7 @@
   letter-spacing: 0em;
   text-align: center;
 }
+
 #headSix {
   color: #36007c;
   font-size: 40px;
@@ -317,6 +307,7 @@
   text-align: left;
   margin: 27px 0 32px 0;
 }
+
 #buttonDownload {
   color: #ffffff;
   font-size: 20px;
@@ -337,23 +328,13 @@
 
 @media (max-width: 768px) {
   #sectionOne {
-    padding: 56px 0;
+    padding: 0;
   }
 
   #contentOne {
-    margin-bottom: 35px;
+    margin: 0 0 35px 0;
   }
 
-  #titleOne {
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 18px;
-    letter-spacing: 0.03em;
-    text-align: center;
-
-    margin-bottom: 14px;
-  }
 
   #headline {
     font-family: Poppins;
@@ -372,14 +353,13 @@
     letter-spacing: 0em;
     text-align: center;
     max-width: 312px;
+    margin: 20px auto;
+
   }
-  #subscriptionSpan {
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
-    letter-spacing: 0em;
-    text-align: center;
+
+  #verifyBeneficio {
+    padding: 10px;
+    margin: 20px auto;
   }
 
   #barrinha {
@@ -397,6 +377,7 @@
   .contentText {
     margin-left: 12px;
   }
+
   .textDownload {
     font-family: Inter;
     font-size: 10px;
@@ -405,6 +386,7 @@
     letter-spacing: 0px;
     text-align: center;
   }
+
   .textLoja {
     font-family: Inter;
     font-size: 14px;
@@ -416,19 +398,9 @@
 
   #sectionTwo {
     padding-bottom: 35px;
+    padding-top: 0;
   }
 
-  #trocaImage {
-    display: none;
-  }
-
-  #imgMobile {
-    display:inline-flex;
-    width: 100%;
-  }
-  #blocoImage {
-    display: none;
-  }
 
   #headlineTwo {
     font-family: Poppins;
@@ -456,9 +428,11 @@
     margin-top: 63px;
     max-width: 254px;
   }
+
   #lista {
     display: none;
   }
+
   .itemlist {
     margin-bottom: 50px;
     max-width: 212px;
@@ -498,6 +472,7 @@
     flex-direction: column;
     padding: 0 0 0 20px;
   }
+
   #titleThree {
     font-family: Poppins;
     font-size: 28px;
@@ -516,6 +491,7 @@
     text-align: left;
     margin-top: 19px;
   }
+
   #contentRightThree {
     display: none;
   }
@@ -543,6 +519,7 @@
     text-align: left;
     margin: 27px 0 19px 0;
   }
+
   #buttonDownload {
     font-family: Poppins;
     font-size: 20px;
@@ -554,6 +531,7 @@
     max-width: 342px;
     display: none;
   }
+
   #mostrarNoMobile {
     display: flex;
     justify-content: center;

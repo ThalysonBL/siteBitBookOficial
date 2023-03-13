@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ResultVerificacao } from "./ResultVerificacao";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+import CpfCnpj from "@react-br-forms/cpf-cnpj-mask";
 
 import {
   useBreakpointValue,
@@ -57,6 +58,8 @@ export function ContentModal() {
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
   const [userWasFound, setUserWasFound] = useState("");
 
+  const [mask, setMask] = useState("");
+
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
     setSelectedPartner(item); //console.log(item);
@@ -67,9 +70,9 @@ export function ContentModal() {
     setQuery(searchValue);
   }, []);
   //pego o valor do CPF
-  const handleChangeCpf = (event: any) => {
+  const handleChangeCpf = (event: any, type: any) => {
     setCpf(event.target.value);
-    console.log(cpf);
+    setMask(type === "CPF");
   };
 
   // verifico na API se está válido o usuário
@@ -141,13 +144,13 @@ export function ContentModal() {
                       <input
                         list="browsers"
                         required
-                        autocomplete="off"
+                        autoComplete="off"
                         id="empresaParceira"
                         value={query}
                         onChange={(e) => searchEmpresas(e.target.value)}
                       />
                       <label
-                        for="empresaParceira"
+                        htmlFor="empresaParceira"
                         title="Digite o nome do seu parceiro"
                         data-title="Digite o nome do seu parceiro"
                       ></label>
@@ -241,17 +244,17 @@ export function ContentModal() {
                   }}
                 >
                   <div className={styles.field}>
-                    <input
+                    <CpfCnpj
                       required
-                      autocomplete="off"
+                      autoComplete="off"
                       id="EmpresaCpf"
                       value={cpf}
                       onChange={handleChangeCpf}
                     />
                     <label
-                      for="EmpresaCpf"
-                      title="Digite o seu CPF"
-                      data-title="Digite o seu CPF"
+                      htmlFor="EmpresaCpf"
+                      title="Digite o seu CPF/CNPJ"
+                      data-title="Digite o seu CPF/CNPJ"
                     ></label>
                   </div>
                 </div>

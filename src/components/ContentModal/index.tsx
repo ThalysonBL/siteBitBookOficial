@@ -1,9 +1,13 @@
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 
 import { api } from "../../services/api";
 
 import Image from "next/image";
+
+import { ResultVerificacao } from "./ResultVerificacao";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 import {
   useBreakpointValue,
@@ -20,6 +24,10 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 
+import GooglePlay from "../../../public/iconPlayStoreBlack.svg";
+import AppleStore from "../../../public/iconAppleStoreBlack.svg";
+import QrCodeLoja from "../../../public/qrCodeLoja.png";
+
 interface DataProps {
   id: number;
   nome: string;
@@ -33,15 +41,25 @@ interface DataProps {
   neotv: string;
 }
 
+interface EmpresasProps {
+  empresas: string;
+}
+
 export function ContentModal() {
+  const { width, height } = useWindowSize();
+
   const { onOpen, onClose, isOpen } = useDisclosure();
   const finalRef = React.useRef(null);
 
-  const [parceiros, setParceiros] = useState([]);
+  const [parceiros, setParceiros] = useState<any>([]);
   const [query, setQuery] = useState("");
   const [cpf, setCpf] = useState("");
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
-  const [userWasFound, setUserWasFound] = useState("");
+  const [userWasFound, setUserWasFound] = useState(false);
+  let resultadoNegativo = false;
+
+
+  
 
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
@@ -72,6 +90,9 @@ export function ContentModal() {
       setUserWasFound(result.data.user_found);
     } else {
       console.log("você não é premium");
+      setUserWasFound(result.data.user_found);
+      console.log(userWasFound);
+      resultadoNegativo = false;
     }
   }
 
@@ -85,82 +106,402 @@ export function ContentModal() {
 
   return (
     <>
-      {userWasFound ? (
-        <p>você é premium</p>
-      ) : (
-        <div id={styles.container}>
+      {!selectedPartner ? (
+        <div className={styles.container}>
           <p id={styles.titleVerify}>Verifique seu benefício</p>
           <p className={styles.descriptionVerify}>
-            O BitBook tem parceria com empresas que você conhece e o aplicativo
-            pode estar vinculado ao seu plano de internet ou outros negócios
-            para usar à vontade. Verifique agora mesmo inserindo os dados
-            abaixo:
+            Selecione uma empresa parceira para verificarmos se benefício:
           </p>
-          <div id={styles.containerInput}>
-            <input
-              placeholder="Digite o nome do seu parceiro"
-              className={styles.styleInput}
-              value={query}
-              onChange={(e) => searchEmpresas(e.target.value)}
-            />
-
-            <input
-              placeholder="Digite o seu CPF"
-              value={cpf}
-              onChange={handleChangeCpf}
-              className={styles.styleInput}
-            />
-          </div>
-
-          {parceiros.length === 0 ? (
-            <Spinner thickness="3px" speed="0.65s" width="20px" height="20px" />
-          ) : (
-            parceiros.empresas
-              ?.filter((item) => {
-                if (query === "") {
-                  return; //item;
-                } else if (
-                  item?.nome?.toLowerCase().includes(query.toLowerCase())
-                ) {
-                  //returns filtered array
-                  return item;
-                }
-              })
-              .map((item, index) => {
-                return (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+              marginLeft: 0,
+              width: "100%",
+            }}
+          >
+            <div id={styles.contentListAndInput}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <div id={styles.containerLista}>
                   <div
-                    key={item.id}
-                    className={styles.containerParceiro}
-                    onClick={() => handleSelectPartner(item)}
-                  >
-                    <Image
-                      src={item.img}
-                      alt="Imagem Parceiro"
-                      width="61"
-                      height="54"
-                      style={{ marginRight: "32px" }}
-                    />
-                    <p>{item.nome}</p>
-                  </div>
-                );
-              })
-          )}
-          <div className={styles.contentButton}>
-            <button
-              type="submit"
-              id={styles.botaoVerificar}
-              onClick={() => handleVerify()}
-            >
-              Verificar benefício
-            </button>
-          </div>
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      widht: "100%",
+                      left: 0,
+                      top: 0,
+                      position: "absolute",
 
-          <p className={styles.descriptionVerify}>
-            Seus dados estão seguros. Suas informações são usadas única e
-            exclusivamente para consultar a liberação da área premium do seu
-            plano, de acordo com o serviço que você já tem com os nossos
-            parceiros. Confira nossa política de privacidade.
-          </p>
+                      zIndex: "1000",
+                    }}
+                  >
+                    <div className={styles.field}>
+                      <input
+                        list="browsers"
+                        required
+                        autocomplete="off"
+                        id="empresaParceira"
+                        value={query}
+                        onChange={(e) => searchEmpresas(e.target.value)}
+                      />
+                      <label
+                        for="empresaParceira"
+                        title="Digite o nome do seu parceiro"
+                        data-title="Digite o nome do seu parceiro"
+                      ></label>
+                      <datalist id="browsers">
+                        {parceiros.empresas?.slice(0, 4).map((item) => {
+                          return (
+                            <div key={item.id}>
+                              <option value={item.nome} />
+                            </div>
+                          );
+                        })}
+                      </datalist>
+                    </div>
+                  </div>
+                  {parceiros.length === 0 ? (
+                    <Spinner
+                      thickness="3px"
+                      speed="0.65s"
+                      width="20px"
+                      height="20px"
+                      margin="auto"
+                    />
+                  ) : (
+                    parceiros.empresas
+                      ?.filter((item: any) => {
+                        if (query === "") {
+                          return item.img_lista;
+                        } else if (
+                          item?.nome
+                            ?.toLowerCase()
+                            .includes(query.toLowerCase())
+                        ) {
+                          //returns filtered array
+                          return (
+                            <Image
+                              src={item.img_lista}
+                              alt="Imagem Parceiro"
+                              width="72"
+                              height="66"
+                            />
+                          );
+                        }
+                      })
+                      .map((item: any, index: any) => {
+                        return (
+                          <div
+                            key={item.id}
+                            className={styles.containerParceiro}
+                            onClick={() => handleSelectPartner(item)}
+                          >
+                            <Image
+                              src={item.img_lista}
+                              alt="Imagem Parceiro"
+                              width="72"
+                              height="66"
+                            />
+                          </div>
+                        );
+                      })
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          {selectedPartner && !userWasFound ? (
+            <div className={styles.containerResultado}>
+              <div
+                style={{
+                  width: "100%",
+                  marginLeft: "-65px",
+                }}
+              >
+                <p id={styles.titleVerify}>Verifique seu benefício</p>
+                <p className={styles.descriptionVerify}>
+                  O CPF utilizado na autenticação é o mesmo <br />
+                  usado no login da empresa parceira <br />
+                  selecionada.
+                </p>
+              </div>
+
+              <div
+                className={styles.containerInput}
+                style={{
+                  width: "100%",
+                  marginLeft: "-65px",
+                }}
+              >
+                <div className={styles.field}>
+                  <input
+                    required
+                    autocomplete="off"
+                    id="EmpresaCpf"
+                    value={cpf}
+                    onChange={handleChangeCpf}
+                  />
+                  <label
+                    for="EmpresaCpf"
+                    title="Digite o seu CPF"
+                    data-title="Digite o seu CPF"
+                  ></label>
+                </div>
+              </div>
+              <div className={styles.contentButton}>
+                <button
+                  type="submit"
+                  id={styles.botaoVerificar}
+                  onClick={() => handleVerify()}
+                >
+                  Verificar benefício
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div>
+                {userWasFound ? (
+                  <div className={styles.containerResultado}>
+                    <Image
+                      src={selectedPartner.img}
+                      alt="Imagem Parceiro"
+                      width="72"
+                      height="66"
+                    />
+                    <Confetti width={700} height={height} />
+
+                    <div>
+                      <p className={styles.titleResult}>
+                        Obaaa! O Bit Book está <br />
+                        liberado para você! 🥳🎉
+                      </p>
+                      <p className={styles.descriptiontitleResult}>
+                        Acesse o app e aproveite agora mesmo todos
+                        <br /> os conteúdos selecionados especialmente
+                        <br /> para você!
+                      </p>
+                    </div>
+                    <div id={styles.caixaLojas}>
+                      <div className={styles.lojasClick}>
+                        <div className={styles.containerDownload}>
+                          <div className={styles.containerLoja}>
+                            <Image
+                              src={GooglePlay}
+                              alt="Imagem parceiro"
+                              className={styles.iconLoja}
+                            />
+                            <a
+                              href="https://play.google.com/store/apps/details?id=br.app.bitbook"
+                              className={styles.contentTextLoja}
+                            >
+                              <p>Disponível na</p>
+                              <p className={styles.textLoja}>Google Play</p>
+                            </a>
+                          </div>
+                        </div>
+                        <a
+                          href="https://apps.apple.com/br/app/bit-book/id1641568359"
+                          className={styles.containerDownload}
+                        >
+                          <div className={styles.containerLoja}>
+                            <Image
+                              src={AppleStore}
+                              alt="Imagem parceiro"
+                              className={styles.iconLoja}
+                            />
+                            <div className={styles.contentTextLoja}>
+                              <p>Disponível na</p>
+                              <p className={styles.textLoja}>App Store</p>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+
+                      <Image
+                        src={QrCodeLoja}
+                        alt="Imagem QR Code"
+                        className={styles.tamanhoQrCode}
+                      />
+                    </div>
+                    <div>
+                      <p className={styles.problemSuport}>
+                        Problemas com seu benefício?
+                      </p>
+                      <p className={styles.problemSuportChamar}>
+                        Fale com o suporte
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.containerResultado}>
+                    <Image
+                      src={selectedPartner.img}
+                      alt="Imagem Parceiro"
+                      width="72"
+                      height="66"
+                    />
+                    <div>
+                      <p
+                        className={styles.titleResult}
+                        style={{
+                          color: "#D73628",
+                        }}
+                      >
+                        Ops, você ainda não tem
+                        <br /> acesso ao Bit Book! 😢
+                      </p>
+                      <p className={styles.descriptiontitleResult}>
+                        Os dados informados não estão em nossa <br />
+                        base, caso você acredite ter direito, procure a<br />
+                        empresa parceira e confirme seus dados de
+                        <br /> cadastro.
+                      </p>
+                    </div>
+                    <div id={styles.caixaLojas}>
+                      <div className={styles.lojasClick}>
+                        <div className={styles.containerDownload}>
+                          <div className={styles.containerLoja}>
+                            <Image
+                              src={GooglePlay}
+                              alt="Imagem parceiro"
+                              className={styles.iconLoja}
+                            />
+                            <a
+                              href="https://play.google.com/store/apps/details?id=br.app.bitbook"
+                              className={styles.contentTextLoja}
+                            >
+                              <p>Disponível na</p>
+                              <p className={styles.textLoja}>Google Play</p>
+                            </a>
+                          </div>
+                        </div>
+                        <a
+                          href="https://apps.apple.com/br/app/bit-book/id1641568359"
+                          className={styles.containerDownload}
+                        >
+                          <div className={styles.containerLoja}>
+                            <Image
+                              src={AppleStore}
+                              alt="Imagem parceiro"
+                              className={styles.iconLoja}
+                            />
+                            <div className={styles.contentTextLoja}>
+                              <p>Disponível na</p>
+                              <p className={styles.textLoja}>App Store</p>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+
+                      <Image
+                        src={QrCodeLoja}
+                        alt="Imagem QR Code"
+                        className={styles.tamanhoQrCode}
+                      />
+                    </div>
+                    <div>
+                      <p className={styles.problemSuport}>
+                        Problemas com seu benefício?
+                      </p>
+                      <p className={styles.problemSuportChamar}>
+                        Fale com o suporte
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {userWasFound === false ? (
+                <div className={styles.containerResultado}>
+                  <Image
+                    src={selectedPartner.img}
+                    alt="Imagem Parceiro"
+                    width="72"
+                    height="66"
+                  />
+                  <div>
+                    <p
+                      className={styles.titleResult}
+                      style={{
+                        color: "#D73628",
+                      }}
+                    >
+                      Ops, você ainda não tem
+                      <br /> acesso ao Bit Book! 😢
+                    </p>
+                    <p className={styles.descriptiontitleResult}>
+                      Os dados informados não estão em nossa <br />
+                      base, caso você acredite ter direito, procure a<br />
+                      empresa parceira e confirme seus dados de
+                      <br /> cadastro.
+                    </p>
+                  </div>
+                  <div id={styles.caixaLojas}>
+                    <div className={styles.lojasClick}>
+                      <div className={styles.containerDownload}>
+                        <a
+                          href="https://onelink.to/fdc34n"
+                          className={styles.contentTextLoja}
+                        >
+                          <div className={styles.containerLoja}>
+                            <Image
+                              src={GooglePlay}
+                              alt="Imagem parceiro"
+                              className={styles.iconLoja}
+                            />
+
+                            <p>Disponível na</p>
+                            <p className={styles.textLoja}>Google Play</p>
+                          </div>
+                        </a>
+                      </div>
+                      <a
+                        href="https://apps.apple.com/br/app/bit-book/id1641568359"
+                        className={styles.containerDownload}
+                      >
+                        <div className={styles.containerLoja}>
+                          <Image
+                            src={AppleStore}
+                            alt="Imagem parceiro"
+                            className={styles.iconLoja}
+                          />
+                          <div className={styles.contentTextLoja}>
+                            <p>Disponível na</p>
+                            <p className={styles.textLoja}>App Store</p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+
+                    <Image
+                      src={QrCodeLoja}
+                      alt="Imagem QR Code"
+                      className={styles.tamanhoQrCode}
+                    />
+                  </div>
+                  <div>
+                    <p className={styles.problemSuport}>
+                      Problemas com seu benefício?
+                    </p>
+                    <p className={styles.problemSuportChamar}>
+                      Fale com o suporte
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
         </div>
       )}
     </>

@@ -48,7 +48,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import Confetti from "react-confetti";
 import { ContentModal } from "../components/ContentModal/index";
 
 export default function Home() {
@@ -89,7 +88,10 @@ export default function Home() {
       </Head>
       <Header />
       <section id={styles.sectionOne}>
-        <div id={styles.containerSectionOne}>
+        <div
+          id={styles.containerSectionOne}
+          
+        >
           <div id={styles.contentOne}>
             <p id={styles.headline}>Seu guia digital de saúde e bem-estar</p>
 
@@ -101,14 +103,14 @@ export default function Home() {
               Verifique o seu benefício
             </button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal blockScrollOnMount={true} isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
 
               <ModalContent
                 bg="#ffffff"
-                width="50%"
+                width="40%"
                 padding="10px 20px"
-                margin=" 10% auto"
+                margin=" 4% auto"
                 borderRadius="8px"
               >
                 <ModalCloseButton display="inline" margin="0 0 0 auto" />
@@ -119,6 +121,7 @@ export default function Home() {
             </Modal>
           </div>
         </div>
+        <SliderProvedores />
       </section>
 
       <section id={styles.sectionTwo}>
@@ -233,6 +236,7 @@ export default function Home() {
           Baixe o App
         </a>
       </section>
+      <Footer />
     </article>
   );
 }

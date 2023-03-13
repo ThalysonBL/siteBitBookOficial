@@ -83,7 +83,9 @@ export function AccordionHome() {
           </h2>
           <AccordionPanel maxWidth={["342px", "342px", "342px"]}>
             Você pode acessar através do nosso app. Para baixar o aplicativo,
-            clique aqui.
+            <a href="https://onelink.to/fdc34n">
+              <strong> clique aqui.</strong>
+            </a>
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem
@@ -115,7 +117,10 @@ export function AccordionHome() {
           <AccordionPanel maxWidth={["342px", "342px", "342px"]}>
             Você encontra diversos livros, revistas, e-books e audiobooks
             voltados para o tema saúde e bem-estar. Uma grande variedade de
-            títulos te espera com acesso ilimitado. Confira!
+            títulos te espera com acesso ilimitado.
+            <a href="https://onelink.to/fdc34n">
+              <strong> Confira!</strong>
+            </a>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

@@ -1,0 +1,290 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 36px 50px 103px;
+}
+
+#containerLista {
+  padding-top: 6rem;
+  padding-right: 1.8rem;
+  height: 336px;
+  width: 384px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+#containerLista::-webkit-scrollbar {
+  width: 12px;
+  /* width of the entire scrollbar */
+}
+
+#containerLista::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 20px;
+  width: 8px;
+
+  /* color of the tracking area */
+}
+
+#containerLista::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: #7e06f2;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid #d9d9d9;
+  /* creates padding around scroll thumb */
+}
+
+#contentListAndInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.descriptionVerify {
+  height: 48px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  line-height: 24px;
+  text-align: left;
+  width: 100%;
+
+  /* or 150% */
+
+  /* Cinza Auxiliar */
+
+  color: #535353;
+}
+
+#titleVerify {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: normal;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.containerInput {
+  display: flex;
+  width: 425px;
+  margin-top: 32px;
+  justify-content: center;
+}
+
+.containerParceiro {
+  width: 25%;
+  height: 66px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.styleInputAbsolute {
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 384px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  margin: 20px 0;
+  position: relative;
+  z-index: 1000;
+}
+
+.styleInput {
+  display: flex;
+  width: 384px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  margin: 20px 0;
+}
+
+.contentButton {
+  width: 100%;
+  padding: 0 auto;
+  text-align: center;
+}
+
+#botaoVerificar {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #7e06f2;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}
+
+.containerResultado {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 103px 50px 99px;
+}
+
+.titleResult {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 31px;
+  letter-spacing: 0em;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  text-align: left;
+  color: #00875f;
+}
+
+.descriptiontitleResult {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+#caixaLojas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.lojasClick {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1.5rem;
+}
+
+.containerDownload {
+  display: flex;
+  margin-top: 15px;
+  border-radius: 6px;
+  border: 1px solid #0a0a0a;
+  transition: 0.4s;
+}
+
+.containerDownload:hover {
+  background-color: #7e06f2;
+  color: #ffffff;
+}
+
+.iconLoja {
+  transition: 0.4s;
+  width: 35px;
+  height: 39px;
+}
+
+.containerLoja {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 13px;
+}
+
+.contentTextLoja {
+  font-weight: 600;
+  margin-left: 15px;
+  font-size: 10px;
+}
+
+.textLoja {
+  font-size: 18px;
+}
+
+.tamanhoQrCode {
+  width: 142px;
+  height: 150px;
+}
+
+.problemSuport {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.problemSuportChamar {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+/*float do input*/
+
+.label-before {
+  line-height: 20px;
+  font-size: 12px;
+  top: -10px;
+  background: #fff;
+  padding: 0 6px;
+  left: 9px;
+}
+
+.field {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 15px;
+  width: 384px;
+  text-align: left;
+  cursor: pointer;
+ 
+
+  label::before {
+    content: attr(title);
+    position: absolute;
+    top: 0;
+    left: 15px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #777;
+    transition: 300ms all;
+  }
+  input {
+    width: 100%;
+    line-height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    &:focus {
+      outline: 0;
+      border-color: #7e06f2;
+    }
+    &:valid + label::before {
+      @extend .label-before;
+      content: attr(data-title);
+    }
+    &:focus + label::before {
+      @extend .label-before;
+      color: gray;
+    }
+  }
+}

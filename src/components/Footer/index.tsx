@@ -9,31 +9,45 @@ export function Footer() {
   const date = new Date();
   const year = date.getFullYear();
   return (
-    <footer id="container">
+    <footer id={styles.container}>
       <div>
         <Image src={LogoWhite} alt="imagem Bit Book" />
 
-        <p id="direitos">© {year} - Todos os direitos reservados</p>
+        <p id={styles.direitos}>© {year} - Todos os direitos reservados</p>
       </div>
       <div>
-        <p id="baixeApp">Baixe nosso app</p>
-        <a
-          className="containerLinkLoja"
-          href="https://play.google.com/store/apps/details?id=br.app.bitbook"
-        >
-          <Image className="imgLojas" src={IconGoogle} alt="imagem Google" />
-        </a>
-        <a
-          className="containerLinkLoja"
-          href="https://apps.apple.com/br/app/bit-book/id1641568359"
-        >
-          <Image className="imgLojas" src={IconApple} alt="imagem Apple" />
-        </a>
+        <p id={styles.baixeApp}>Baixe nosso app</p>
+        <div id={styles.containerIconLoja}>
+          <a
+            className={styles.containerLinkLoja}
+            href="https://play.google.com/store/apps/details?id=br.app.bitbook"
+          >
+            <Image
+              className={styles.imgLojas}
+              src={IconGoogle}
+              alt="imagem Google"
+            />
+          </a>
+          <a
+            className={styles.containerLinkLoja}
+            href="https://apps.apple.com/br/app/bit-book/id1641568359"
+          >
+            <Image
+              className={styles.imgLojas}
+              src={IconApple}
+              alt="imagem Apple"
+            />
+          </a>
+        </div>
       </div>
-      <div id="thirdBox">
-        <p id="textBitTech">
+      <div id={styles.thirdBox}>
+        <p id={styles.textBitTech}>
           Desenvolvido por: Bit Tecnologia
-          <Image id="iconeHearth" src={IconHearth} alt="Imagem coração" />
+          <Image
+            id={styles.iconeHearth}
+            src={IconHearth}
+            alt="Imagem coração"
+          />
         </p>
       </div>
     </footer>

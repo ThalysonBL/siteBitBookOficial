@@ -88,10 +88,7 @@ export default function Home() {
       </Head>
       <Header />
       <section id={styles.sectionOne}>
-        <div
-          id={styles.containerSectionOne}
-          
-        >
+        <div id={styles.containerSectionOne}>
           <div id={styles.contentOne}>
             <p id={styles.headline}>Seu guia digital de saúde e bem-estar</p>
 

@@ -7,12 +7,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('../../public/imgDobraOne.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  max-height: auto;
+  background: url('../../public/imgDobraOne.png') no-repeat center center fixed;
+  background-size: 100% auto;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  -o-background-size: 100% auto;
+
 }
 
 #contentOne {
@@ -327,10 +327,13 @@
   display: none;
 }
 
+
+
 @media (max-width: 768px) {
   #sectionOne {
     padding: 0;
   }
+
 
   #contentOne {
     margin: 0 0 35px 0;

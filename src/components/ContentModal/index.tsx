@@ -56,10 +56,6 @@ export function ContentModal() {
   const [cpf, setCpf] = useState("");
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
   const [userWasFound, setUserWasFound] = useState(false);
-  let resultadoNegativo = false;
-
-
-  
 
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
@@ -92,7 +88,6 @@ export function ContentModal() {
       console.log("você não é premium");
       setUserWasFound(result.data.user_found);
       console.log(userWasFound);
-      resultadoNegativo = false;
     }
   }
 
@@ -106,11 +101,12 @@ export function ContentModal() {
 
   return (
     <>
-      {!selectedPartner ? (
+      {!selectedPartner ? ( //Selecione a empresa
         <div className={styles.container}>
           <p id={styles.titleVerify}>Verifique seu benefício</p>
           <p className={styles.descriptionVerify}>
-            Selecione uma empresa parceira para verificarmos se benefício:
+            Selecione uma empresa parceira para
+            <br /> verificarmos se benefício:
           </p>
           <div
             style={{
@@ -218,12 +214,13 @@ export function ContentModal() {
           </div>
         </div>
       ) : (
+        //tela de add CPF
         <div>
           {selectedPartner && !userWasFound ? (
             <div className={styles.containerResultado}>
               <div
                 style={{
-                  width: "100%",
+                  width: "384px",
                   marginLeft: "-65px",
                 }}
               >
@@ -268,6 +265,7 @@ export function ContentModal() {
               </div>
             </div>
           ) : (
+            //se o userWasFound for true vai exibir a tela de APROVADO
             <div>
               <div>
                 {userWasFound ? (
@@ -343,6 +341,7 @@ export function ContentModal() {
                     </div>
                   </div>
                 ) : (
+                  //se o userWasFound for true vai exibir a tela de NÃO APROVADO
                   <div className={styles.containerResultado}>
                     <Image
                       src={selectedPartner.img}
@@ -420,86 +419,6 @@ export function ContentModal() {
                   </div>
                 )}
               </div>
-              {userWasFound === false ? (
-                <div className={styles.containerResultado}>
-                  <Image
-                    src={selectedPartner.img}
-                    alt="Imagem Parceiro"
-                    width="72"
-                    height="66"
-                  />
-                  <div>
-                    <p
-                      className={styles.titleResult}
-                      style={{
-                        color: "#D73628",
-                      }}
-                    >
-                      Ops, você ainda não tem
-                      <br /> acesso ao Bit Book! 😢
-                    </p>
-                    <p className={styles.descriptiontitleResult}>
-                      Os dados informados não estão em nossa <br />
-                      base, caso você acredite ter direito, procure a<br />
-                      empresa parceira e confirme seus dados de
-                      <br /> cadastro.
-                    </p>
-                  </div>
-                  <div id={styles.caixaLojas}>
-                    <div className={styles.lojasClick}>
-                      <div className={styles.containerDownload}>
-                        <a
-                          href="https://onelink.to/fdc34n"
-                          className={styles.contentTextLoja}
-                        >
-                          <div className={styles.containerLoja}>
-                            <Image
-                              src={GooglePlay}
-                              alt="Imagem parceiro"
-                              className={styles.iconLoja}
-                            />
-
-                            <p>Disponível na</p>
-                            <p className={styles.textLoja}>Google Play</p>
-                          </div>
-                        </a>
-                      </div>
-                      <a
-                        href="https://apps.apple.com/br/app/bit-book/id1641568359"
-                        className={styles.containerDownload}
-                      >
-                        <div className={styles.containerLoja}>
-                          <Image
-                            src={AppleStore}
-                            alt="Imagem parceiro"
-                            className={styles.iconLoja}
-                          />
-                          <div className={styles.contentTextLoja}>
-                            <p>Disponível na</p>
-                            <p className={styles.textLoja}>App Store</p>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-
-                    <Image
-                      src={QrCodeLoja}
-                      alt="Imagem QR Code"
-                      className={styles.tamanhoQrCode}
-                    />
-                  </div>
-                  <div>
-                    <p className={styles.problemSuport}>
-                      Problemas com seu benefício?
-                    </p>
-                    <p className={styles.problemSuportChamar}>
-                      Fale com o suporte
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
             </div>
           )}
         </div>

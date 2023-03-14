@@ -1,5 +1,13 @@
 #sectionOne {
-  padding-top: 88px;
+  margin: 0;
+  /*margin-top: 88px;*/
+  background: url('../../public/imgDobraOne.png') no-repeat;
+  object-fit: cover;
+
+  background-size: cover;
+  height: 90%;
+  margin-top: 90px;
+
 }
 
 #containerSectionOne {
@@ -7,11 +15,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('../../public/imgDobraOne.png') no-repeat center center fixed;
+  background-size: 100vw 100vh;
+
+
+  /*
   background-size: 100% auto;
+
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
-  -o-background-size: 100% auto;
+  -o-background-size: 100% auto;*/
 
 }
 
@@ -89,7 +101,6 @@
 
 
 #containerModal {
-  background-color: red;
   margin: auto;
   width: 400px;
   height: 400px;

@@ -87,6 +87,7 @@ export default function Home() {
         <title>Bit Book | Home</title>
       </Head>
       <Header />
+
       <section id={styles.sectionOne}>
         <div id={styles.containerSectionOne}>
           <div id={styles.contentOne}>
@@ -100,13 +101,24 @@ export default function Home() {
               Verifique o seu benefício
             </button>
 
-            <Modal blockScrollOnMount={true} isOpen={isOpen} onClose={onClose}>
+            <Modal
+              blockScrollOnMount={true}
+              isOpen={isOpen}
+              size={["full", "full", "full", "xl"]}
+              onClose={onClose}
+              // height="50vh"
+            >
               <ModalOverlay />
 
               <ModalContent
                 bg="#ffffff"
-                width="40%"
-                padding="10px 20px"
+                width={["full", "full", "full", "40%"]}
+                padding={[
+                  "10px 20px 50px 10px ",
+                  "10px 20px 50px 10px ",
+                  "10px 20px 50px 10px ",
+                  "10px 20px 50px 10px ",
+                ]}
                 margin=" 4% auto"
                 borderRadius="8px"
               >
@@ -118,8 +130,8 @@ export default function Home() {
             </Modal>
           </div>
         </div>
-        <SliderProvedores />
       </section>
+      <SliderProvedores />
 
       <section id={styles.sectionTwo}>
         <p id={styles.headlineTwo}>Cuidar da saúde nunca foi tão fácil...</p>

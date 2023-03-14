@@ -18,27 +18,22 @@ export function Footer() {
       <div>
         <p id={styles.baixeApp}>Baixe nosso app</p>
         <div id={styles.containerIconLoja}>
-          <a
-            className={styles.containerLinkLoja}
-            href="https://play.google.com/store/apps/details?id=br.app.bitbook"
-          >
-            <Image
-              className={styles.imgLojas}
-              src={IconGoogle}
-              alt="imagem Google"
-            />
-          </a>
-          <a
-            className={styles.containerLinkLoja}
-            href="https://apps.apple.com/br/app/bit-book/id1641568359"
-          >
-            <Image
-              className={styles.imgLojas}
-              src={IconApple}
-              alt="imagem Apple"
-            />
-          </a>
+          <Image
+            src={IconGoogle}
+            alt="imagem Google"
+            style={{ zIndex: 900, display: "block" }}
+          />
+          <Image src={IconApple} alt="imagem Apple" />
         </div>
+        <a
+          className={styles.containerLinkLoja}
+          href="https://play.google.com/store/apps/details?id=br.app.bitbook"
+        ></a>
+
+        <a
+          className={styles.containerLinkLoja}
+          href="https://apps.apple.com/br/app/bit-book/id1641568359"
+        ></a>
       </div>
       <div id={styles.thirdBox}>
         <p id={styles.textBitTech}>

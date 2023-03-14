@@ -1,10 +1,39 @@
 #container {
 
   position: relative;
-  padding: 90px auto;
-  background-color: red;
+  padding: 10px auto;
+  z-index: 20
+}
+
+
+#verifyBeneficio {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+
+
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background-color: #7E06F2;
+  border: 1px solid #7E06F2;
+
+  max-width: 60%;
+  margin-right: 1rem;
+
+  vertical-align: middle;
+  align-items: center;
+  transition: 0.3s;
 
 }
+
+#verifyBeneficio:hover {
+  background: none;
+  color: #7E06F2;
+}
+
 
 .header-scrolled {
   opacity: 0.3;
@@ -20,7 +49,7 @@
 }
 
 #content {
-  padding: 29px 112px;
+  padding: 30px 112px 30px 112px;
 
   display: flex;
   justify-content: space-between;
@@ -71,9 +100,14 @@
   #content {
     padding: 20px;
   }
+
+  #verifyBeneficio {
+    display: none;
+  }
 }
 
 @media (max-width: 320px) {
+
   #duvidasApp {
     font-size: 13px;
 
@@ -82,6 +116,3 @@
   }
 }
 
-#teste {
-  background-color: red;
-}

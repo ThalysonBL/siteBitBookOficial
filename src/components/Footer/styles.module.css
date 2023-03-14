@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 118px;
-  padding: 64px 227px;
+  padding: 64px 112px;
   background-color: #36007c;
 }
 
@@ -38,16 +38,11 @@
   color: #f0f0f0;
 }
 
-.imgLojas {
-  background: #7e06f2;
-  border-radius: 8px;
-  padding: 16px;
-  width: 25px;
-  height: 25px;
-  margin: 8px 8px 0 8px;
-}
+.imgLojas {}
 
 #textBitTech {
+  display: flex;
+  align-items: center;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -61,10 +56,16 @@
 
 .containerLinkLoja {
   text-decoration: none;
+  border-radius: 8px;
+  padding: 16px;
+  width: 25px;
+  height: 25px;
+  margin: 8px 8px 0 8px;
 }
 
-.containerIconLoja {
+#containerIconLoja {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 

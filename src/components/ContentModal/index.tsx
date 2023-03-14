@@ -56,9 +56,9 @@ export function ContentModal() {
   const [query, setQuery] = useState("");
   const [cpf, setCpf] = useState("");
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
-  const [userWasFound, setUserWasFound] = useState("");
+  const [userWasFound, setUserWasFound]: any = useState("");
 
-  const [mask, setMask] = useState("");
+  const [mask, setMask]: any = useState("");
 
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
@@ -106,11 +106,13 @@ export function ContentModal() {
     <>
       {!selectedPartner ? ( //Selecione a empresa
         <div className={styles.container}>
-          <p id={styles.titleVerify}>Verifique seu benefício</p>
-          <p className={styles.descriptionVerify}>
-            Selecione uma empresa parceira para
-            <br /> verificarmos se benefício:
-          </p>
+          <div className={styles.containerText}>
+            <p id={styles.titleVerify}>Verifique seu benefício</p>
+            <p className={styles.descriptionVerify}>
+              Selecione uma empresa parceira para
+              <br /> verificarmos se benefício:
+            </p>
+          </div>
           <div
             style={{
               display: "flex",
@@ -132,11 +134,10 @@ export function ContentModal() {
                   <div
                     style={{
                       backgroundColor: "#FFFFFF",
-                      widht: "100%",
+                      width: "100%",
                       left: 0,
                       top: 0,
                       position: "absolute",
-
                       zIndex: "1000",
                     }}
                   >
@@ -154,15 +155,37 @@ export function ContentModal() {
                         title="Digite o nome do seu parceiro"
                         data-title="Digite o nome do seu parceiro"
                       ></label>
-                      <datalist id="browsers">
-                        {parceiros.empresas?.slice(0, 4).map((item) => {
-                          return (
-                            <div key={item.id}>
-                              <option value={item.nome} />
-                            </div>
-                          );
-                        })}
-                      </datalist>
+                      <div
+                        style={{
+                          position: "absolute",
+                        }}
+                        className={styles.containerInputList}
+                      >
+                        {parceiros.empresas
+                          ?.filter((item: any) => {
+                            if (query === "") {
+                            } else if (
+                              item?.nome
+                                ?.toLowerCase()
+                                .includes(query.toLowerCase())
+                            ) {
+                              //returns filtered array
+                              return <p>{item.nome}</p>;
+                            }
+                          })
+                          .slice(0, 4)
+                          .map((item: any, index: any) => {
+                            return (
+                              <div
+                                key={item.id}
+                                onClick={() => handleSelectPartner(item)}
+                                className={styles.textInputList}
+                              >
+                                <p>{item.nome}</p>
+                              </div>
+                            );
+                          })}
+                      </div>
                     </div>
                   </div>
                   {parceiros.length === 0 ? (
@@ -190,6 +213,7 @@ export function ContentModal() {
                               alt="Imagem Parceiro"
                               width="72"
                               height="66"
+                              className={styles.bordaAndShadow}
                             />
                           );
                         }
@@ -206,6 +230,7 @@ export function ContentModal() {
                               alt="Imagem Parceiro"
                               width="72"
                               height="66"
+                              className={styles.bordaAndShadow}
                             />
                           </div>
                         );
@@ -222,10 +247,19 @@ export function ContentModal() {
           {userWasFound === "" ? (
             <div>
               <div className={styles.containerResultado}>
+                <Image
+                  src={selectedPartner.img}
+                  alt="Image parceiro"
+                  width="72"
+                  height="66"
+                  style={{
+                    marginBottom: "20px",
+                  }}
+                  className={styles.bordaImage}
+                />
                 <div
                   style={{
                     width: "384px",
-                    marginLeft: "-65px",
                   }}
                 >
                   <p id={styles.titleVerify}>Verifique seu benefício</p>
@@ -236,13 +270,7 @@ export function ContentModal() {
                   </p>
                 </div>
 
-                <div
-                  className={styles.containerInput}
-                  style={{
-                    width: "100%",
-                    marginLeft: "-65px",
-                  }}
-                >
+                <div className={styles.containerInput}>
                   <div className={styles.field}>
                     <CpfCnpj
                       required
@@ -283,8 +311,9 @@ export function ContentModal() {
             alt="Imagem Parceiro"
             width="72"
             height="66"
+            className={styles.bordaImage}
           />
-          <Confetti width={700} height={height} />
+          <Confetti width={650} height={height} gravity={0.5} />
 
           <div>
             <p className={styles.titleResult}>
@@ -339,9 +368,20 @@ export function ContentModal() {
               className={styles.tamanhoQrCode}
             />
           </div>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <p className={styles.problemSuport}>Problemas com seu benefício?</p>
-            <p className={styles.problemSuportChamar}>Fale com o suporte</p>
+            <a
+              href="https://wa.me/+553398231860"
+              className={styles.problemSuportChamar}
+            >
+              Fale com o suporte
+            </a>
           </div>
         </div>
       ) : (
@@ -354,6 +394,7 @@ export function ContentModal() {
                 alt="Imagem Parceiro"
                 width="72"
                 height="66"
+                className={styles.bordaImage}
               />
               <div>
                 <p
@@ -414,11 +455,22 @@ export function ContentModal() {
                   className={styles.tamanhoQrCode}
                 />
               </div>
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
                 <p className={styles.problemSuport}>
                   Problemas com seu benefício?
                 </p>
-                <p className={styles.problemSuportChamar}>Fale com o suporte</p>
+                <a
+                  href="https://wa.me/+553398231860"
+                  className={styles.problemSuportChamar}
+                >
+                  Fale com o suporte
+                </a>
               </div>
             </div>
           ) : (

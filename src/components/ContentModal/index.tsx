@@ -8,6 +8,8 @@ import Image from "next/image";
 import { ResultVerificacao } from "./ResultVerificacao";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+// @ts-ignore
+
 import CpfCnpj from "@react-br-forms/cpf-cnpj-mask";
 
 import {
@@ -70,7 +72,7 @@ export function ContentModal() {
     setQuery(searchValue);
   }, []);
   //pego o valor do CPF
-  const handleChangeCpf = (event: any, type: any) => {
+  const handleChangeCpf: any = (event: any, type: any) => {
     setCpf(event.target.value);
     setMask(type === "CPF");
   };

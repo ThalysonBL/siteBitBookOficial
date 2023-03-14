@@ -65,6 +65,12 @@ $animationSpeed: 40s;
     height: 100px;
     width: 200px;
   }
+
+  .bordaAndShadow {
+    border: 1px solid #b7b7b7;
+    border-radius: 6px;
+    box-shadow: 0 5px 5px #b7b7b7;
+  }
 }
 .imagemProvedor {
   width: 100px;

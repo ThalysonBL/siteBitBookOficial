@@ -59,8 +59,16 @@ export function ContentModal() {
   const [cpf, setCpf] = useState("");
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
   const [userWasFound, setUserWasFound]: any = useState("");
-
+  const [cpfIsDisabled, setCpfIsDisabled] = useState(false);
   const [mask, setMask]: any = useState("");
+
+  const handleSelectOnCpf = () => {
+    if (cpf < cpf.length(9) || cpf > cpf.length(14)) {
+      return;
+    } else if (cpf === cpf.length(10) || cpf === cpf.length(13)) {
+      return setCpfIsDisabled(true);
+    }
+  };
 
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
@@ -136,7 +144,6 @@ export function ContentModal() {
                   <div
                     style={{
                       backgroundColor: "#FFFFFF",
-                      width: "100%",
                       left: 0,
                       top: 0,
                       position: "absolute",
@@ -279,6 +286,7 @@ export function ContentModal() {
                       autoComplete="off"
                       id="EmpresaCpf"
                       value={cpf}
+                      disabled={cpfIsDisabled}
                       onChange={handleChangeCpf}
                     />
                     <label
@@ -315,7 +323,7 @@ export function ContentModal() {
             height="66"
             className={styles.bordaImage}
           />
-          <Confetti width={650} height={height} gravity={0.5} />
+          <Confetti width={575} height={height} gravity={0.5} />
 
           <div>
             <p className={styles.titleResult}>

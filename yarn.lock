@@ -1317,10 +1317,6 @@
   dependencies:
     tslib "^2.4.0"
 
-"@types/@react-br-forms/cpf-cnpj-mask":
-  version "1.0.6"
-  resolved "https://codeload.github.com/react-br-forms/cpf-cnpj-mask/tar.gz/00a7b96e1403f506d00f09ef3264823f484e13b8"
-
 "@types/hoist-non-react-statics@*":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"

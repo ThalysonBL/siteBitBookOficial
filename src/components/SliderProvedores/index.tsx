@@ -37,7 +37,8 @@ export function SliderProvedores() {
                   src={item.img}
                   alt="Imagem parceiro Bit Book"
                   width="72"
-                  height="66"
+                  height="64"
+                  className={styles.bordaAndShadow}
                 />
               </div>
             );

@@ -10,7 +10,7 @@
 }
 
 #containerLista {
-  padding-top: 6rem;
+  padding-top: 6.2rem;
   padding-right: 1.8rem;
   height: 336px;
   width: 384px;
@@ -201,6 +201,10 @@
 .containerDownload:hover {
   background-color: #7e06f2;
   color: #ffffff;
+
+  .iconLoja {
+    filter: invert(1);
+  }
 }
 
 .iconLoja {
@@ -381,6 +385,7 @@
   }
 
   .field {
+    margin-left: 1rem;
   }
   .titleResult {
     font-size: 12px;

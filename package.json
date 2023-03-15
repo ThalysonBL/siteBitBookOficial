@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^2.9.11",
     "@next/font": "13.1.5",
     "@react-br-forms/cpf-cnpj-mask": "^1.0.6",
     "@types/node": "18.11.18",
@@ -26,14 +27,17 @@
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.5",
     "react-use": "^17.4.0",
     "sass": "^1.59.2",
     "scss": "^0.2.4",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.6",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "@types/yup": "^0.32.0"
   }
 }

@@ -1096,6 +1096,12 @@ button.swiper-pagination-bullet {
   width: 200px
 }
 
+.styles_slider__msiR5 .styles_bordaAndShadow__DEycr {
+  border: 1px solid #b7b7b7;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px #b7b7b7
+}
+
 .styles_imagemProvedor__MdgT_ {
   width: 100px;
   height: 100px

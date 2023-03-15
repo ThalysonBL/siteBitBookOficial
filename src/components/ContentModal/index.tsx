@@ -1,17 +1,22 @@
 import styles from "./styles.module.scss";
 import React, { useRef, useEffect, useState, useCallback } from "react";
-
 import { api } from "../../services/api";
-
 import Image from "next/image";
+//react Hook Form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { object, string } from "yup";
+
+const schema = object({
+  cpf: string().required(),
+});
 
 import { ResultVerificacao } from "./ResultVerificacao";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 // @ts-ignore
-
 import CpfCnpj from "@react-br-forms/cpf-cnpj-mask";
-
 import {
   useBreakpointValue,
   Modal,
@@ -50,7 +55,6 @@ interface EmpresasProps {
 
 export function ContentModal() {
   const { width, height } = useWindowSize();
-
   const { onOpen, onClose, isOpen } = useDisclosure();
   const finalRef = React.useRef(null);
 
@@ -59,16 +63,36 @@ export function ContentModal() {
   const [cpf, setCpf] = useState("");
   const [selectedPartner, setSelectedPartner]: any = useState<DataProps>();
   const [userWasFound, setUserWasFound]: any = useState("");
-  const [cpfIsDisabled, setCpfIsDisabled] = useState(false);
   const [mask, setMask]: any = useState("");
 
-  const handleSelectOnCpf = () => {
-    if (cpf < cpf.length(9) || cpf > cpf.length(14)) {
-      return;
-    } else if (cpf === cpf.length(10) || cpf === cpf.length(13)) {
-      return setCpfIsDisabled(true);
+  const handleChange = (e: any) => {
+    const rawValue = e.target.value;
+    let cpforCnpjValue = rawValue.replace(/\D/g, "");
+
+    if (cpf.length <= 11) {
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{3})(\d)/, "$1.$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{3})(\d)/, "$1.$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{3})(\d{1,2})/, "$1-$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(-\d{2})\d+?$/, "$1");
+    } else {
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{2})(\d)/, "$1.$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{3})(\d)/, "$1.$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{3})(\d)/, "$1/$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(\d{4})(\d{1,2})/, "$1-$2");
+      cpforCnpjValue = cpforCnpjValue.replace(/(-\d{2})\d+?$/, "$1");
+    }
+
+    setCpf(cpforCnpjValue);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (cpf.length === 18 || cpf.length === 14) {
+      alert("CPF ou CNPJ válido");
     }
   };
+
+  const isFormValid = cpf.length === 18 || cpf.length === 14;
 
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
@@ -281,25 +305,32 @@ export function ContentModal() {
 
                 <div className={styles.containerInput}>
                   <div className={styles.field}>
-                    <CpfCnpj
-                      required
-                      autoComplete="off"
-                      id="EmpresaCpf"
-                      value={cpf}
-                      disabled={cpfIsDisabled}
-                      onChange={handleChangeCpf}
-                    />
-                    <label
-                      htmlFor="EmpresaCpf"
-                      title="Digite o seu CPF/CNPJ"
-                      data-title="Digite o seu CPF/CNPJ"
-                    ></label>
+                    <form onChange={handleChange}>
+                      <CpfCnpj
+                        required
+                        autoComplete="off"
+                        id="EmpresaCpf"
+                        value={cpf}
+                        onChange={handleChangeCpf}
+                      />
+                      <label
+                        htmlFor="EmpresaCpf"
+                        title="Digite o seu CPF/CNPJ"
+                        data-title="Digite o seu CPF/CNPJ"
+                      ></label>
+                      {!isFormValid && (
+                        <span style={{ fontSize: "10px" }}>
+                          Por favor, preencha o CPF ou CNPJ corretamente
+                        </span>
+                      )}
+                    </form>
                   </div>
                 </div>
                 <div className={styles.contentButton}>
                   <button
                     type="submit"
                     id={styles.botaoVerificar}
+                    disabled={!isFormValid}
                     onClick={() => handleVerify()}
                   >
                     Verificar benefício

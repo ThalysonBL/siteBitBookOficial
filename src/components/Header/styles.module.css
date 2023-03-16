@@ -11,7 +11,7 @@
   border-radius: 8px;
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 600; 
+  font-weight: 600;
   font-size: 16px;
 
 
@@ -114,4 +114,34 @@
     text-align: left;
     width: 104px;
   }
+}
+
+/* CONFIGURAÇÕES DO MENU */
+.nav-bar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+/* Nova classe a ser atribuída ao elemento com os estilos desejados */
+.changeStyle {
+  opacity: 0.1;
+  background-color: red;
+
+}
+
+.nav-bar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  transition: background-color 0.3s ease-in-out;
+  /* ainda não funciona */
+}
+
+.nav-bar-item {
+  float: left;
 }

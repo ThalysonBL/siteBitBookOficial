@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import Logo from "../../../public/logo.png";
 import Image from "next/image";
 import { ContentModal } from "../ContentModal/index";
+import "./main.js";
 
 import {
   useBreakpointValue,
@@ -29,8 +30,6 @@ import {
 import { useScrolling } from "react-use";
 
 export function Header() {
-
-  
   const { onOpen, onClose, isOpen } = useDisclosure();
   const finalRef = React.useRef(null);
 

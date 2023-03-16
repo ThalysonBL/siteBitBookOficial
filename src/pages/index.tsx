@@ -95,7 +95,7 @@ export default function Home() {
 
             <p id={styles.subscriptionOne}>
               Descubra se já é cliente de um de nossos parceiros e tenha acesso
-              a novos ebooks todos os meses, de forma gratuita e ilimitada.
+              a novos ebooks todos os meses, sem custo adicional.
             </p>
             <button id={styles.verifyBeneficio} onClick={onOpen}>
               Verifique o seu benefício

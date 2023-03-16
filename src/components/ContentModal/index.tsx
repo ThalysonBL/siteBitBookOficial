@@ -2,15 +2,6 @@ import styles from "./styles.module.scss";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { api } from "../../services/api";
 import Image from "next/image";
-//react Hook Form
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { object, string } from "yup";
-
-const schema = object({
-  cpf: string().required(),
-});
 
 import { ResultVerificacao } from "./ResultVerificacao";
 import Confetti from "react-confetti";
@@ -66,6 +57,7 @@ export function ContentModal() {
   const [mask, setMask]: any = useState("");
 
   const handleChange = (e: any) => {
+    e.preventDefault();
     const rawValue = e.target.value;
     let cpforCnpjValue = rawValue.replace(/\D/g, "");
 
@@ -92,8 +84,6 @@ export function ContentModal() {
     }
   };
 
-  const isFormValid = cpf.length === 18 || cpf.length === 14;
-
   // Guardo a empresa
   const handleSelectPartner = useCallback((item: any) => {
     setSelectedPartner(item); //console.log(item);
@@ -105,9 +95,12 @@ export function ContentModal() {
   }, []);
   //pego o valor do CPF
   const handleChangeCpf: any = (event: any, type: any) => {
+    event.preventDefault();
     setCpf(event.target.value);
     setMask(type === "CPF");
   };
+  const [isFormValid, setIsFormValid] = useState("");
+  const formatacaoCpf = cpf.length === 18 || cpf.length === 14;
 
   // verifico na API se está válido o usuário
   async function handleVerify() {
@@ -118,13 +111,19 @@ export function ContentModal() {
       }
     );
     //console.log(result);
-
-    if (result.data.user_found === true) {
-      console.log("parabenas");
-      setUserWasFound(result.data.user_found);
-    } else {
-      console.log("você não é premium");
-      setUserWasFound(result.data.user_found);
+    if (formatacaoCpf) {
+      if (result.data.user_found === true) {
+        setUserWasFound(result.data.user_found);
+      } else {
+        setUserWasFound(result.data.user_found);
+      }
+    } else if (
+      cpf.length < 10 ||
+      (cpf.length > 10 && cpf.length <= 13) ||
+      cpf.length >= 15
+    ) {
+      const cpfInvalido = "CPF ou CNPJ inválido";
+      return setIsFormValid(cpfInvalido);
     }
   }
 
@@ -308,7 +307,7 @@ export function ContentModal() {
                     <form onChange={handleChange}>
                       <CpfCnpj
                         required
-                        autoComplete="off"
+                        //autoComplete="off"
                         id="EmpresaCpf"
                         value={cpf}
                         onChange={handleChangeCpf}
@@ -318,11 +317,15 @@ export function ContentModal() {
                         title="Digite o seu CPF/CNPJ"
                         data-title="Digite o seu CPF/CNPJ"
                       ></label>
-                      {!isFormValid && (
-                        <span style={{ fontSize: "10px" }}>
-                          Por favor, preencha o CPF ou CNPJ corretamente
-                        </span>
-                      )}
+                      <span
+                        style={{
+                          fontSize: "10px",
+                          color: "#AD1E12",
+                          paddingLeft: "1rem",
+                        }}
+                      >
+                        {isFormValid}
+                      </span>
                     </form>
                   </div>
                 </div>
@@ -330,7 +333,6 @@ export function ContentModal() {
                   <button
                     type="submit"
                     id={styles.botaoVerificar}
-                    disabled={!isFormValid}
                     onClick={() => handleVerify()}
                   >
                     Verificar benefício

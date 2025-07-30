@@ -80,9 +80,9 @@ export function Header() {
         <div id={styles.content}>
           <Image src={Logo} alt="Logo Bit Book" />
           <div>
-            <button id={styles.verifyBeneficio} onClick={onOpen}>
+            {/* <button id={styles.verifyBeneficio} onClick={onOpen}>
               Verifique o seu benefício
-            </button>
+            </button> */}
 
             <a
               id={styles.duvidasApp}

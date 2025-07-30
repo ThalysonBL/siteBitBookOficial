@@ -33,7 +33,7 @@ export function SliderProvedores() {
           {images.empresas?.map((item: any) => {
             return (
               <div className={styles.slide} key={item.id}>
-                <Image
+                <img
                   src={item.img}
                   alt="Imagem parceiro Bit Book"
                   width="72"

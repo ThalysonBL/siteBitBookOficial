@@ -240,7 +240,7 @@ export function ContentModal() {
                         ) {
                           //returns filtered array
                           return (
-                            <Image
+                            <img
                               src={item.img_lista}
                               alt="Imagem Parceiro"
                               width="72"
@@ -257,7 +257,7 @@ export function ContentModal() {
                             className={styles.containerParceiro}
                             onClick={() => handleSelectPartner(item)}
                           >
-                            <Image
+                            <img
                               src={item.img_lista}
                               alt="Imagem Parceiro"
                               width="72"
@@ -279,7 +279,7 @@ export function ContentModal() {
           {userWasFound === "" ? (
             <div>
               <div className={styles.containerResultado}>
-                <Image
+                <img
                   src={selectedPartner.img}
                   alt="Image parceiro"
                   width="72"
@@ -349,7 +349,7 @@ export function ContentModal() {
       {cpf && selectedPartner && userWasFound ? (
         //tela premium
         <div className={styles.containerResultado}>
-          <Image
+          <img
             src={selectedPartner.img}
             alt="Imagem Parceiro"
             width="72"
@@ -432,7 +432,7 @@ export function ContentModal() {
           {selectedPartner && userWasFound === false ? (
             //tela não é premium
             <div className={styles.containerResultado}>
-              <Image
+              <img
                 src={selectedPartner.img}
                 alt="Imagem Parceiro"
                 width="72"

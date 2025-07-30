@@ -97,9 +97,9 @@ export default function Home() {
               Descubra se já é cliente de um de nossos parceiros e tenha acesso
               a novos ebooks todos os meses, sem custo adicional.
             </p>
-            <button id={styles.verifyBeneficio} onClick={onOpen}>
+            {/* <button id={styles.verifyBeneficio} onClick={onOpen}>
               Verifique o seu benefício
-            </button>
+            </button> */}
 
             <Modal
               blockScrollOnMount={true}
